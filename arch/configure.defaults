@@ -791,7 +791,7 @@ PROMOTION       =       #-fdefault-real-8
 ARCH_LOCAL      =       -DNONSTANDARD_SYSTEM_SUBR  CONFIGURE_D_CTSM
 # to validate WRF correctness on aarch64 against x86_64; compile with x86 this alternate ARCH_LOCAL option; able to achieve identical output model on ubuntu 18.04 with gcc 10.2 (on graviton and intel processors)
 # ARCH_LOCAL      =       -DNONSTANDARD_SYSTEM_SUBR  CONFIGURE_D_CTSM -DAARCH64_X86_CORRECTNESS_FIX
-CFLAGS_LOCAL    =       -w -O3 -c  # -DRSL0_ONLY
+CFLAGS_LOCAL    =       -w -O3 -c -fpermissive -Wno-error=incompatible-pointer-types  # -DRSL1_ONLY
 LDFLAGS_LOCAL   =       
 CPLUSPLUSLIB    =       
 ESMF_LDFLAG     =       $(CPLUSPLUSLIB)
@@ -804,7 +804,7 @@ FORMAT_FREE     =       -ffree-form -ffree-line-length-none
 FCSUFFIX        =       
 FCCOMPAT        =       
 BYTESWAPIO      =       -fconvert=big-endian -frecord-marker=4
-FCBASEOPTS_NO_G =       -w $(FORMAT_FREE) $(BYTESWAPIO) $(FCCOMPAT)
+FCBASEOPTS_NO_G =       -w $(FORMAT_FREE) $(BYTESWAPIO) $(FCCOMPAT) -fallow-argument-mismatch
 FCBASEOPTS      =       $(FCBASEOPTS_NO_G) $(FCDEBUG)
 MODULE_SRCH_FLAG =     
 TRADFLAG        =      CONFIGURE_TRADFLAG

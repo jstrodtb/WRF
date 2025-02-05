@@ -5,7 +5,7 @@ FFLAGS  =  $(OPTS)
 LIBS    = 
 M4      = m4 -Uinclude -Uindex -Ulen
 AR      = ar
-CFLAGS = $(PLUSFLAG)
+CFLAGS = $(PLUSFLAG) -Wno-error=incompatible-pointer-types
 CPPFLAGS =
 FFLAGS =
 

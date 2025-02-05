@@ -29,6 +29,7 @@ ARCHFLAGS       =    $(COREDEFS) -DIWORDSIZE=$(IWORDSIZE) -DDWORDSIZE=$(DWORDSIZ
                       -DKEEP_INT_AROUND \
                       -DLIMIT_ARGS \
                       -DBUILD_RRTMG_FAST=0 \
+                      -Wno-error=incompatible-pointer-types \
                       -DBUILD_RRTMK=0 \
                       -DBUILD_SBM_FAST=1 \
                       -DSHOW_ALL_VARS_USED=0 \
