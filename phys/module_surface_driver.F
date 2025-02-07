@@ -3757,7 +3757,7 @@ CONTAINS
             ENDIF
          ENDIF
 
-       write(message,'('' surface_driver: B4 call to clmdrv with do_bioe = '',l)') do_bioe
+!       write(message,'('' surface_driver: B4 call to clmdrv with do_bioe = '',l)') do_bioe
        CALL wrf_debug( 100,trim(message) )
        CALL wrf_debug(100,'in clmdrv')
 

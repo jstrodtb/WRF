@@ -1195,11 +1195,11 @@ USE module_io_domain
       TYPE ( domain ) :: grid
       INTEGER , INTENT(IN) :: fid
 
-      INTEGER :: ids, ide, jds, jde, kds, kde, &
+      INTEGER, intent(out) :: ids, ide, jds, jde, kds, kde, &
                  ims, ime, jms, jme, kms, kme, &
                  its, ite, jts, jte, kts, kte
 
-      INTEGER :: itmp , icnt , ierr
+      INTEGER, intent(out) :: itmp , icnt , ierr
 
       flag_name = '                                                                                '
 

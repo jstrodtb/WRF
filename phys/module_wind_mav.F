@@ -37,6 +37,8 @@ MODULE module_wind_mav
   USE module_dm, ONLY : wrf_dm_min_real, wrf_dm_sum_reals
   USE module_configure, ONLY : grid_config_rec_type
 
+  use ieee_arithmetic
+
 
   IMPLICIT NONE
 #endif
@@ -1232,7 +1234,7 @@ MODULE module_wind_mav
 
       angle = real(acos(tmp1/tmp2), kind = 4)
 
-      if (isnan(angle)) then
+      if (ieee_is_nan(angle)) then
          angle = 0.
       end if
  
