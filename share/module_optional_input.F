@@ -69,8 +69,8 @@ CONTAINS
 
       IMPLICIT NONE 
 
-      TYPE ( domain ) :: grid
-      TYPE (grid_config_rec_type) :: config_flags
+      TYPE ( domain ), INTENT(IN) :: grid
+      TYPE (grid_config_rec_type), INTENT(IN) :: config_flags
 
       INTEGER :: ids, ide, jds, jde, kds, kde, &
                  ims, ime, jms, jme, kms, kme, &
@@ -121,8 +121,8 @@ CONTAINS
 
       IMPLICIT NONE 
 
-      TYPE ( domain ) :: grid
-      TYPE (grid_config_rec_type) :: config_flags
+      TYPE ( domain ), INTENT(IN) :: grid
+      TYPE (grid_config_rec_type), INTENT(IN) :: config_flags
       INTEGER , INTENT(IN) :: fid
 
       INTEGER :: ids, ide, jds, jde, kds, kde, &
@@ -274,15 +274,15 @@ CONTAINS
       USE module_io_wrf
       USE module_domain	, ONLY : domain
 
-USE module_configure , ONLY : grid_config_rec_type
-USE module_io_domain
+      USE module_configure , ONLY : grid_config_rec_type
+      USE module_io_domain
 
       IMPLICIT NONE 
 
-      TYPE ( domain ) :: grid
+      TYPE ( domain ), INTENT(IN) :: grid
       INTEGER , INTENT(IN) :: fid
 
-      INTEGER :: ids, ide, jds, jde, kds, kde, &
+      INTEGER, INTENT(IN) :: ids, ide, jds, jde, kds, kde, &
                  ims, ime, jms, jme, kms, kme, &
                  its, ite, jts, jte, kts, kte
 
@@ -500,10 +500,10 @@ USE module_io_domain
 
       IMPLICIT NONE 
 
-      TYPE ( domain ) :: grid
+      TYPE ( domain ), INTENT(OUT) :: grid
       INTEGER , INTENT(IN) :: fid
 
-      INTEGER :: ids, ide, jds, jde, kds, kde, &
+      INTEGER, INTENT(IN) :: ids, ide, jds, jde, kds, kde, &
                  ims, ime, jms, jme, kms, kme, &
                  its, ite, jts, jte, kts, kte
 
@@ -553,10 +553,10 @@ USE module_io_domain
 
       IMPLICIT NONE 
 
-      TYPE ( domain ) :: grid
+      TYPE ( domain ), INTENT(IN) :: grid
       INTEGER , INTENT(IN) :: fid
 
-      INTEGER :: ids, ide, jds, jde, kds, kde, &
+      INTEGER, INTENT(IN) :: ids, ide, jds, jde, kds, kde, &
                  ims, ime, jms, jme, kms, kme, &
                  its, ite, jts, jte, kts, kte
 
@@ -588,10 +588,10 @@ USE module_io_domain
 
       IMPLICIT NONE 
 
-      TYPE ( domain ) :: grid
+      TYPE ( domain ), INTENT(IN) :: grid
       INTEGER , INTENT(IN) :: fid
 
-      INTEGER :: ids, ide, jds, jde, kds, kde, &
+      INTEGER, INTENT(IN) :: ids, ide, jds, jde, kds, kde, &
                  ims, ime, jms, jme, kms, kme, &
                  its, ite, jts, jte, kts, kte
 
@@ -714,10 +714,10 @@ USE module_io_domain
 
       IMPLICIT NONE 
 
-      TYPE ( domain ) :: grid
+      TYPE ( domain ), INTENT(IN) :: grid
       INTEGER , INTENT(IN) :: fid
 
-      INTEGER :: ids, ide, jds, jde, kds, kde, &
+      INTEGER, INTENT(IN) :: ids, ide, jds, jde, kds, kde, &
                  ims, ime, jms, jme, kms, kme, &
                  its, ite, jts, jte, kts, kte
 
@@ -858,10 +858,10 @@ USE module_io_domain
 
       IMPLICIT NONE 
 
-      TYPE ( domain ) :: grid
+      TYPE ( domain ), INTENT(IN) :: grid
       INTEGER , INTENT(IN) :: fid
 
-      INTEGER :: ids, ide, jds, jde, kds, kde, &
+      INTEGER, INTENT(IN) :: ids, ide, jds, jde, kds, kde, &
                  ims, ime, jms, jme, kms, kme, &
                  its, ite, jts, jte, kts, kte
 
@@ -893,10 +893,10 @@ USE module_io_domain
 
       IMPLICIT NONE 
 
-      TYPE ( domain ) :: grid
+      TYPE ( domain ), INTENT(IN) :: grid
       INTEGER , INTENT(IN) :: fid
 
-      INTEGER :: ids, ide, jds, jde, kds, kde, &
+      INTEGER, INTENT(IN) :: ids, ide, jds, jde, kds, kde, &
                  ims, ime, jms, jme, kms, kme, &
                  its, ite, jts, jte, kts, kte
 
@@ -928,10 +928,10 @@ USE module_io_domain
 
       IMPLICIT NONE 
 
-      TYPE ( domain ) :: grid
+      TYPE ( domain ), INTENT(OUT) :: grid
       INTEGER , INTENT(IN) :: fid
 
-      INTEGER :: ids, ide, jds, jde, kds, kde, &
+      INTEGER, INTENT(IN) :: ids, ide, jds, jde, kds, kde, &
                  ims, ime, jms, jme, kms, kme, &
                  its, ite, jts, jte, kts, kte
 
@@ -972,10 +972,10 @@ USE module_io_domain
 
       IMPLICIT NONE 
 
-      TYPE ( domain ) :: grid
+      TYPE ( domain ), INTENT(OUT) :: grid
       INTEGER , INTENT(IN) :: fid
 
-      INTEGER :: ids, ide, jds, jde, kds, kde, &
+      INTEGER, INTENT(IN) :: ids, ide, jds, jde, kds, kde, &
                  ims, ime, jms, jme, kms, kme, &
                  its, ite, jts, jte, kts, kte
 
@@ -1040,13 +1040,13 @@ USE module_io_domain
 
       IMPLICIT NONE 
 
-      TYPE ( domain ) :: grid
+      TYPE ( domain ), INTENT(IN) :: grid
       INTEGER , INTENT(IN) :: fid
       INTEGER , INTENT(IN) :: seaice_albedo_opt
       INTEGER , INTENT(IN) :: seaice_snowdepth_opt
       INTEGER , INTENT(IN) :: seaice_thickness_opt
 
-      INTEGER :: ids, ide, jds, jde, kds, kde, &
+      INTEGER, INTENT(IN) :: ids, ide, jds, jde, kds, kde, &
                  ims, ime, jms, jme, kms, kme, &
                  its, ite, jts, jte, kts, kte
 
@@ -1147,10 +1147,10 @@ USE module_io_domain
 
       IMPLICIT NONE 
 
-      TYPE ( domain ) :: grid
+      TYPE ( domain ), INTENT(IN) :: grid
       INTEGER , INTENT(IN) :: fid
 
-      INTEGER :: ids, ide, jds, jde, kds, kde, &
+      INTEGER, INTENT(IN) :: ids, ide, jds, jde, kds, kde, &
                  ims, ime, jms, jme, kms, kme, &
                  its, ite, jts, jte, kts, kte
 
@@ -1192,14 +1192,14 @@ USE module_io_domain
 
       IMPLICIT NONE 
 
-      TYPE ( domain ) :: grid
+      TYPE ( domain ), INTENT(IN) :: grid
       INTEGER , INTENT(IN) :: fid
 
       INTEGER, intent(out) :: ids, ide, jds, jde, kds, kde, &
                  ims, ime, jms, jme, kms, kme, &
                  its, ite, jts, jte, kts, kte
 
-      INTEGER, intent(out) :: itmp , icnt , ierr
+      INTEGER :: itmp , icnt , ierr
 
       flag_name = '                                                                                '
 
@@ -1227,10 +1227,10 @@ USE module_io_domain
 
       IMPLICIT NONE 
 
-      TYPE ( domain ) :: grid
+      TYPE ( domain ), INTENT(IN) :: grid
       INTEGER , INTENT(IN) :: fid
 
-      INTEGER :: ids, ide, jds, jde, kds, kde, &
+      INTEGER, INTENT(IN) :: ids, ide, jds, jde, kds, kde, &
                  ims, ime, jms, jme, kms, kme, &
                  its, ite, jts, jte, kts, kte
 
