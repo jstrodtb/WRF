@@ -9,14 +9,14 @@ RECURSIVE SUBROUTINE integrate ( grid )
 
 
 
-   USE module_domain
+   USE module_domain, ONLY: domain, alloc_and_configure_domain, set_current_grid_ptr
    USE module_driver_constants
    USE module_nesting
-   USE module_configure
+   USE module_configure, ONLY:  grid_config_rec_type
    USE module_timing
    USE module_utility
 #if ( WRFPLUS == 1 )
-!   USE module_linked_list2, only : linkedlist_initialize
+   USE module_linked_list2, only : linkedlist_initialize
 #endif
    USE module_cpl, ONLY : coupler_on, cpl_snd, cpl_defdomain
 #ifdef DM_PARALLEL
@@ -177,87 +177,87 @@ RECURSIVE SUBROUTINE integrate ( grid )
    INTERFACE
        ! mediation-supplied solver
      SUBROUTINE solve_interface ( grid )
-       USE module_domain
+       USE module_domain, ONLY: domain
        TYPE (domain) grid
      END SUBROUTINE solve_interface
        ! mediation-supplied routine to allow driver to pass time information
        ! down to mediation/model layer
      SUBROUTINE med_calc_model_time ( grid , config_flags )
-       USE module_domain
-       USE module_configure
+       USE module_domain, ONLY: domain
+       USE module_configure, ONLY: grid_config_rec_type
        TYPE (domain) grid
        TYPE (grid_config_rec_type) config_flags
      END SUBROUTINE med_calc_model_time
        ! mediation-supplied routine that gives mediation layer opportunity to 
        ! perform I/O before the call to the solve routine
      SUBROUTINE med_before_solve_io ( grid , config_flags )
-       USE module_domain
-       USE module_configure
+       USE module_domain, ONLY: domain
+       USE module_configure, ONLY: grid_config_rec_type
        TYPE (domain) grid
        TYPE (grid_config_rec_type) config_flags
      END SUBROUTINE med_before_solve_io
 #if ( WRFPLUS == 1 )
      SUBROUTINE med_last_ad_solve_io ( grid , config_flags )
-       USE module_domain
-       USE module_configure
+       USE module_domain, ONLY: domain
+       USE module_configure, ONLY: grid_config_rec_type
        TYPE (domain) grid
        TYPE (grid_config_rec_type) config_flags
      END SUBROUTINE med_last_ad_solve_io
      SUBROUTINE jcdfi_init_coef
      END SUBROUTINE jcdfi_init_coef
      SUBROUTINE jcdfi_zero_forcing ( grid )
-       USE module_domain
+       USE module_domain, ONLY: domain
        TYPE (domain) grid
      END SUBROUTINE jcdfi_zero_forcing
      SUBROUTINE jcdfi_tl ( grid )
-       USE module_domain
+       USE module_domain, ONLY: domain
        TYPE (domain) grid
      END SUBROUTINE jcdfi_tl
      SUBROUTINE jcdfi_add_forcing (grid)
-       USE module_domain
+       USE module_domain, ONLY: domain
        TYPE (domain) grid
      END SUBROUTINE jcdfi_add_forcing
 #endif
        ! mediation-supplied routine that gives mediation layer opportunity to 
        ! perform I/O after the call to the solve routine
      SUBROUTINE med_after_solve_io ( grid , config_flags )
-       USE module_domain
-       USE module_configure
+       USE module_domain, ONLY: domain
+       USE module_configure, ONLY: grid_config_rec_type
        TYPE (domain) grid
        TYPE (grid_config_rec_type) config_flags
      END SUBROUTINE med_after_solve_io
        ! mediation-supplied routine that gives mediation layer opportunity to 
        ! perform I/O to initialize a new nest
      SUBROUTINE med_pre_nest_initial ( parent , newid , config_flags )
-       USE module_domain
-       USE module_configure
+       USE module_domain, ONLY: domain
+       USE module_configure, ONLY: grid_config_rec_type
        TYPE (domain), POINTER ::  parent
        INTEGER, INTENT(IN)    ::  newid
        TYPE (grid_config_rec_type) config_flags
      END SUBROUTINE med_pre_nest_initial
      SUBROUTINE med_nest_initial ( parent , grid , config_flags )
-       USE module_domain
-       USE module_configure
+       USE module_domain, ONLY: domain
+       USE module_configure, ONLY: grid_config_rec_type
        TYPE (domain), POINTER ::  grid , parent
        TYPE (grid_config_rec_type) config_flags
      END SUBROUTINE med_nest_initial
        ! mediation-supplied routine that gives mediation layer opportunity to 
        ! provide parent->nest forcing
      SUBROUTINE med_nest_force ( parent , grid )
-       USE module_domain
-       USE module_configure
+       USE module_domain, ONLY: domain
+       USE module_configure, ONLY: grid_config_rec_type
        TYPE (domain), POINTER ::  grid, parent
      END SUBROUTINE med_nest_force
 
 #ifdef MOVE_NESTS
      SUBROUTINE med_nest_move ( parent , grid )
-       USE module_domain
-       USE module_configure
+       USE module_domain, ONLY: domain
+       USE module_configure, ONLY: grid_config_rec_type
        TYPE (domain), POINTER ::  grid , parent
      END SUBROUTINE med_nest_move
      SUBROUTINE reconcile_nest_positions_over_tasks ( grid )
-       USE module_domain
-       USE module_configure
+       USE module_domain, ONLY: domain
+       USE module_configure, ONLY: grid_config_rec_type
        TYPE (domain), POINTER ::  grid
      END SUBROUTINE reconcile_nest_positions_over_tasks
 #endif
@@ -265,8 +265,8 @@ RECURSIVE SUBROUTINE integrate ( grid )
        ! mediation-supplied routine that gives mediation layer opportunity to 
        ! provide parent->nest feedback
      SUBROUTINE med_nest_feedback ( parent , grid , config_flags )
-       USE module_domain
-       USE module_configure
+       USE module_domain, ONLY: domain
+       USE module_configure, ONLY: grid_config_rec_type
        TYPE (domain), POINTER ::  grid , parent
        TYPE (grid_config_rec_type) config_flags
      END SUBROUTINE med_nest_feedback
@@ -274,24 +274,24 @@ RECURSIVE SUBROUTINE integrate ( grid )
        ! mediation-supplied routine that gives mediation layer opportunity to 
        ! perform I/O prior to the close of this call to integrate
      SUBROUTINE med_last_solve_io ( grid , config_flags )
-       USE module_domain
-       USE module_configure
+       USE module_domain, ONLY: domain
+       USE module_configure, ONLY: grid_config_rec_type
        TYPE (domain) grid
        TYPE (grid_config_rec_type) config_flags
      END SUBROUTINE med_last_solve_io
        ! mediation-supplied routine that gives mediation layer opportunity to 
        ! perform setup before iteration over steps in this call to integrate
      SUBROUTINE med_setup_step ( grid , config_flags )
-       USE module_domain
-       USE module_configure
+       USE module_domain, ONLY: domain
+       USE module_configure, ONLY: grid_config_rec_type
        TYPE (domain) grid
        TYPE (grid_config_rec_type) config_flags
      END SUBROUTINE med_setup_step
        ! mediation-supplied routine that gives mediation layer opportunity to
        ! perform setup before iteration over steps in this call to integrate
      SUBROUTINE med_endup_step ( grid , config_flags )
-       USE module_domain
-       USE module_configure
+       USE module_domain, ONLY : domain
+       USE module_configure, ONLY : grid_config_rec_type
        TYPE (domain) grid
        TYPE (grid_config_rec_type) config_flags
      END SUBROUTINE med_endup_step
@@ -299,12 +299,12 @@ RECURSIVE SUBROUTINE integrate ( grid )
        ! by interpolation
 
      SUBROUTINE Setup_Timekeeping( grid )
-       USE module_domain
+       USE module_domain, ONLY: domain
        TYPE(domain), POINTER :: grid
      END SUBROUTINE
 
      SUBROUTINE dfi_accumulate( grid )
-       USE module_domain
+       USE module_domain, ONLY: domain
        TYPE(domain), POINTER :: grid
      END SUBROUTINE
 
