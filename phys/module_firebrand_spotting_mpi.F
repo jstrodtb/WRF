@@ -378,7 +378,6 @@ CONTAINS
         USE module_dm, ONLY : ntasks_x, ntasks_y, mytask_x, mytask_y ! total tasks in x,y dimensions, this task i,j 
 
         IMPLICIT NONE
-        INCLUDE "mpif.h"
 
         TYPE(domain), INTENT(IN)    :: grid ! input data **Note: Intent IN**
 
