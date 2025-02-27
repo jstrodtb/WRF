@@ -818,14 +818,14 @@ CC_TOOLS        =      $(SCC)
 NETCDFPAR_BUILD	=      CONFIGURE_NETCDFPAR_BUILD
 
 ###########################################################
-#ARCH    Linux x86_64 ppc64le, gfortran compiler with gcc  #serial smpar dmpar dm+sm
+#ARCH    Linux ppc64le, gfortran compiler with gcc  #serial smpar dmpar dm+sm
 #
 DESCRIPTION     =       GCC + XLF LIBMASS ($SFC/$SCC)
 DMPARALLEL      =       # 1
 OMPCPP          =       # -D_OPENMP
 OMP             =       # -fopenmp
 OMPCC           =       # -fopenmp
-SFC             =       xlf90
+SFC             =       xlf
 SCC             =       gcc
 CCOMP           =       gcc
 DM_FC           =       mpif90 -f90=$(SFC)

@@ -39,29 +39,27 @@ PROGRAM ndown_em
    INTERFACE
      ! mediation-supplied
      SUBROUTINE med_read_wrf_chem_bioemiss ( grid , config_flags)
-       USE module_domain
+       IMPORT :: domain, grid_config_rec_type
        TYPE (domain) grid
        TYPE (grid_config_rec_type) config_flags
      END SUBROUTINE med_read_wrf_chem_bioemiss
 
      SUBROUTINE init_domain_constants_em_ptr ( parent , nest )
-       USE module_domain
-       USE module_configure
+       IMPORT :: domain
        TYPE(domain), POINTER  :: parent , nest
      END SUBROUTINE init_domain_constants_em_ptr
 
      SUBROUTINE vertical_interp (nested_grid,znw_c,znu_c,cf1_c,cf2_c,cf3_c,cfn_c,cfn1_c,k_dim_c,c3h,c4h,c3f,c4f)
-         USE module_domain
-         USE module_configure
-         TYPE(domain), POINTER ::  nested_grid
-         INTEGER , INTENT (IN) :: k_dim_c
-         REAL , INTENT (IN) :: cf1_c,cf2_c,cf3_c,cfn_c,cfn1_c
-         REAL , DIMENSION(k_dim_c) , INTENT (IN) ::  znw_c,znu_c
-         REAL , DIMENSION(k_dim_c) , INTENT (IN) ::  c3h,c4h,c3f,c4f
+       IMPORT :: domain
+       TYPE(domain), POINTER ::  nested_grid
+       INTEGER , INTENT (IN) :: k_dim_c
+       REAL , INTENT (IN) :: cf1_c,cf2_c,cf3_c,cfn_c,cfn1_c
+       REAL , DIMENSION(k_dim_c) , INTENT (IN) ::  znw_c,znu_c
+       REAL , DIMENSION(k_dim_c) , INTENT (IN) ::  c3h,c4h,c3f,c4f
       END SUBROUTINE vertical_interp
 
-
    END INTERFACE
+
    INTEGER :: ids , ide , jds , jde , kds , kde
    INTEGER :: ims , ime , jms , jme , kms , kme
    INTEGER :: ips , ipe , jps , jpe , kps , kpe
