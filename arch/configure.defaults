@@ -825,7 +825,7 @@ DMPARALLEL      =       # 1
 OMPCPP          =       # -D_OPENMP
 OMP             =       # -fopenmp
 OMPCC           =       # -fopenmp
-SFC             =       xlf
+SFC             =       xlf90
 SCC             =       gcc
 CCOMP           =       gcc
 DM_FC           =       mpif90 -f90=$(SFC)
@@ -842,7 +842,7 @@ CFLAGS_LOCAL    =       -DNOUNDERSCORE -mcpu=power10 -w -O3 -c -fpermissive -Wno
 LDFLAGS_LOCAL   =       -lmass -lmassvp10  
 CPLUSPLUSLIB    =       
 ESMF_LDFLAG     =       $(CPLUSPLUSLIB)
-FCOPTIM         =       -qarch=pwr10 -O2 -ftree-vectorize -funroll-loops -frecord-marker=4 -qalias=aggressive
+FCOPTIM         =       -qarch=pwr10 -O2 -ftree-vectorize -funroll-loops -qalias=aggressive -qhalt=s
 FCREDUCEDOPT	  =       $(FCOPTIM)
 FCNOOPT		      =       -O0
 FCDEBUG         =       # -g $(FCNOOPT) # -ggdb -fbacktrace -fcheck=bounds,do,mem,pointer -ffpe-trap=invalid,zero,overflow
@@ -850,7 +850,7 @@ FORMAT_FIXED    =       -ffixed-form
 FORMAT_FREE     =       -ffree-form -ffree-line-length-none
 FCSUFFIX        =       
 FCCOMPAT        =       
-BYTESWAPIO      =       
+BYTESWAPIO      =       -fconvert=big-endian -frecord-marker=4
 FCBASEOPTS_NO_G =       -w $(FORMAT_FREE) $(BYTESWAPIO) $(FCCOMPAT) -qxlf2008=nocheckpresence
 FCBASEOPTS      =       $(FCBASEOPTS_NO_G) $(FCDEBUG)
 MODULE_SRCH_FLAG =     
